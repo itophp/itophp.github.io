@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#eceae4"/>
+  <rect x="24" y="24" width="1552" height="952" fill="none" stroke="#b9b4a6" stroke-width="3" stroke-dasharray="14 10"/>
+  <g fill="#6a6f68" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" text-anchor="middle">
+    <text x="800" y="470" font-size="34">界面截图占位 · 后台概览</text>
+    <text x="800" y="530" font-size="24" fill="#8a8f87">建议尺寸 1600 × 1000（2x），展示登录后的概览页</text>
+    <text x="800" y="580" font-size="20" fill="#8a8f87">真实截图放入 website/assets/console-overview.png 并替换引用后删除本文件</text>
+  </g>
+</svg>

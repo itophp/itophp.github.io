@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>文档 — Horizon</title>
+<meta name="description" content="Horizon 文档导航：本地开发、架构与运行机制、能力与编排、工程规范、安全与测试、界面设计。">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<script>document.documentElement.dataset.theme=localStorage.getItem('hz-theme')||'light'</script>
+<style>
+:root{
+  --bg:#ffffff;--fg:#09090b;--card:#ffffff;--muted:#f4f4f5;--muted-fg:#71717a;
+  --border:#e4e4e7;--primary:#18181b;--primary-fg:#fafafa;
+}
+[data-theme=dark]{
+  --bg:#09090b;--fg:#fafafa;--card:#0c0c0e;--muted:#18181b;--muted-fg:#a1a1aa;
+  --border:#27272a;--primary:#fafafa;--primary-fg:#18181b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:Inter,-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+.site-head{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--border);
+  background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px)}
+.head-in{display:flex;align-items:center;height:56px;gap:8px;position:relative}
+.brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;
+  text-decoration:none;padding:6px 10px;border-radius:6px}
+.brand:hover{background:var(--muted)}
+.head-nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:2px}
+.head-nav a{text-decoration:none;font-size:14px;color:var(--muted-fg);padding:6px 12px;border-radius:6px}
+.head-nav a:hover{color:var(--fg);background:var(--muted)}
+.head-nav a.on{color:var(--fg)}
+.head-right{margin-left:auto;display:flex;gap:4px;align-items:center}
+.icon-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;
+  border:1px solid transparent;background:transparent;color:var(--muted-fg);border-radius:6px;cursor:pointer}
+.icon-btn:hover{color:var(--fg);background:var(--muted)}
+.gh-btn{display:flex;align-items:center;gap:7px;font-size:13.5px;text-decoration:none;
+  border:1px solid var(--border);border-radius:6px;padding:5px 12px;color:var(--fg)}
+.gh-btn:hover{background:var(--muted)}
+[data-theme=light] .moon{display:block}[data-theme=light] .sun{display:none}
+[data-theme=dark] .moon{display:none}[data-theme=dark] .sun{display:block}
+.page-head{padding:44px 0 32px;border-bottom:1px solid var(--border)}
+.page-head h1{margin:0 0 6px;font-size:1.8rem;font-weight:700;letter-spacing:-.02em}
+.page-head p{margin:0;color:var(--muted-fg);max-width:42em}
+.code-inl{font-family:ui-monospace,Consolas,monospace;font-size:.86em;background:var(--muted);
+  border:1px solid var(--border);padding:1px 5px;border-radius:4px}
+.doc-wrap{padding:8px 0 16px}
+.doc-group{padding:28px 0;border-bottom:1px solid var(--border)}
+.doc-group:last-of-type{border-bottom:none}
+.doc-group h2{font-size:1.15rem;font-weight:600;letter-spacing:-.01em;margin:0 0 4px}
+.doc-group>p{margin:0 0 14px;color:var(--muted-fg);font-size:13.5px}
+.doc-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:0 44px;margin:0;padding:0;list-style:none}
+.doc-list a{display:block;padding:7px 0;border-bottom:1px solid var(--border);
+  text-decoration:none;font-size:14px}
+.doc-list li:last-child a{border-bottom:none}
+.doc-list a:hover{background:var(--muted);text-decoration:none !important;border-radius:6px;margin:0 -10px;padding:7px 10px}
+.doc-list small{display:block;color:var(--muted-fg);font-size:12px;line-height:1.5}
+.flowline{display:flex;flex-wrap:wrap;gap:8px;align-items:center;max-width:46rem;margin:6px 0 4px;font-size:13px;color:var(--muted-fg)}
+.flowline .node{border:1px solid var(--border);border-radius:6px;padding:3px 12px;color:var(--fg);background:var(--card);white-space:nowrap}
+.flowline .arr{color:var(--muted-fg);font-family:ui-monospace,Consolas,monospace}
+footer{border-top:1px solid var(--border);padding:32px 0 42px;margin-top:40px;text-align:center;color:var(--muted-fg);font-size:13px}
+footer nav{display:flex;gap:20px;justify-content:center;margin-bottom:10px}
+footer a{color:var(--muted-fg);text-decoration:none}
+footer a:hover{color:var(--fg)}
+@media (max-width:620px){.head-nav{display:none}}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="index.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"/></svg>
+      Horizon
+    </a>
+    <nav class="head-nav">
+      <a href="index.html">首页</a>
+      <a href="features.html">功能</a>
+      <a href="quickstart.html">快速开始</a>
+      <a class="on" href="docs.html">文档</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+    <div class="head-right">
+      <button class="icon-btn" id="themeToggle" aria-label="切换主题">
+        <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a class="gh-btn" href="https://github.com/itophp/horizon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.35.77 1.05.77 2.12v3.14c0 .3.21.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <h1>文档</h1>
+  <p>文档保存在仓库 <span class="code-inl">docs/</span> 目录，与代码同步演进。链接指向 GitHub，随时与主干一致。</p>
+</div>
+
+<div class="wrap doc-wrap">
+  <section class="doc-group">
+    <h2>开始使用</h2>
+    <p>第一次接触 Horizon，建议按此顺序阅读。</p>
+    <ul class="doc-list">
+      <li><a href="https://github.com/itophp/horizon/blob/main/README.md">README（中文）<small>项目定位、概念架构与核心能力</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/README.en.md">README（English）<small>英文版项目介绍</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/local-development.md">本地开发与工程说明<small>环境要求、启动步骤、账号与权限</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/architecture.md">架构与运行机制<small>各层职责与运行时顺序</small></a></li>
+    </ul>
+  </section>
+
+  <section class="doc-group">
+    <h2>核心机制</h2>
+    <p>能力契约、执行方案与任务编排的工作方式。</p>
+    <ul class="doc-list">
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/capability-composition.md">能力拆分与组合<small>什么时候拆能力、如何互调</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/capability-flexible-orchestration-implementation.md">Capability 执行方案实施记录<small>Direct / Workflow / Graph 方案、版本发布与租户绑定</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/orchestration-plan.md">Eino 编排方案<small>Workflow / Graph / ADK 的选型与边界</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/orchestration-example.md">完整生命周期示例<small>从需求到验证的端到端示例</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/entity-model.md">实体模型<small>实体声明、字段分类与状态转移校验</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/agent-generation-plan.md">Schema 路线<small>生成与校验的实际覆盖范围</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/agent-workflow.md">Agent 开发步骤<small>提问、复用与能力发现策略</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/agent-tooling.md">任务工具矩阵<small>按任务类型选择 Skill 与门禁</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/AI-Native%20Memory%20Center%20%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md">Memory Center 技术架构<small>记忆采集、治理与实施计划</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/ai-native-plugin-integration.md">插件集成方案<small>统一契约下的业务扩展</small></a></li>
+    </ul>
+  </section>
+
+  <section class="doc-group">
+    <h2>工程规范</h2>
+    <p>参与开发需要遵循的约定与运行时规范。</p>
+    <ul class="doc-list">
+      <li><a href="https://github.com/itophp/horizon/blob/main/AGENTS.md">AGENTS.md<small>仓库长期开发规则与架构边界</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/coding-conventions.md">编码约定<small>命名、结构与分层</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/api-contracts.md">API 契约流程<small>从 Goa DSL 到生成 SDK</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/database-conventions.md">数据库约定<small>迁移、查询与事务</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/application-runtime-development.md">Application Runtime 规范<small>菜单、页面、Provider 与动作绑定</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/memory-center-development.md">Memory Center 开发规范<small>接入与治理边界</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/internationalization.md">国际化<small>en / zh-CN 键集合一致性</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/mcp-service-plan.md">MCP 服务规划<small>暴露面与安全边界</small></a></li>
+    </ul>
+  </section>
+
+  <section class="doc-group">
+    <h2>安全与测试</h2>
+    <p>治理边界是框架的核心承诺，这些文档说明它如何被验证。</p>
+    <ul class="doc-list">
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/security.md">基础安全规则<small>认证、授权、敏感字段与跨租户</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/testing.md">测试与质量门禁<small>执行节奏与命令选择</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/verification.md">工程验收记录<small>已验证内容与已知边界</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/decisions/015-capability-centric-platform.md">ADR 015：能力为中心的平台<small>架构决策记录</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/decisions/016-capability-taxonomy-and-orchestration.md">ADR 016：能力分类与编排<small>编排元数据与默认值</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/decisions/002-identity-access.md">ADR 002：身份与权限<small>角色、数据范围与 Casbin</small></a></li>
+    </ul>
+  </section>
+
+  <section class="doc-group">
+    <h2>界面设计</h2>
+    <p>前端设计与开发参考。</p>
+    <ul class="doc-list">
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/design-system.md">设计系统<small>视觉与组件语言</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/page-templates.md">页面模板与布局<small>常用页面骨架</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/ui-component-guidelines.md">组件使用指南<small>shadcn 组件约定</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/ui-interaction-patterns.md">组合与交互模式<small>表单、表格与流程交互</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/ui-ai-patterns.md">AI 界面参考<small>智能参与的界面模式</small></a></li>
+      <li><a href="https://github.com/itophp/horizon/blob/main/docs/code-reference/README.md">代码参考<small>实现示例索引</small></a></li>
+    </ul>
+  </section>
+
+  <section class="doc-group">
+    <h2>开发一个功能的典型路径</h2>
+    <p>新能力从需求到上线的标准流程；简单功能走默认 Direct 分支。</p>
+    <div class="flowline">
+      <span class="node">需求分析</span><span class="arr">→</span>
+      <span class="node">能力发现与拆分</span><span class="arr">→</span>
+      <span class="node">契约实现与注册</span><span class="arr">→</span>
+      <span class="node">执行方案选型</span><span class="arr">→</span>
+      <span class="node">校验 / 发布</span><span class="arr">→</span>
+      <span class="node">授权范围内绑定</span><span class="arr">→</span>
+      <span class="node">真实入口验证与回滚</span>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <nav>
+      <a href="features.html">功能</a><a href="quickstart.html">快速开始</a>
+      <a href="docs.html">文档</a><a href="faq.html">FAQ</a>
+      <a href="https://github.com/itophp/horizon">GitHub</a>
+    </nav>
+    <div>Copyright © 2026 Horizon contributors · GPL-3.0-or-later</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.getElementById('themeToggle').addEventListener('click',function(){
+    var r=document.documentElement;
+    r.dataset.theme=r.dataset.theme==='dark'?'light':'dark';
+    localStorage.setItem('hz-theme',r.dataset.theme);
+  });
+})();
+</script>
+</body>
+</html>

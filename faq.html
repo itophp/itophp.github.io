@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ — Horizon</title>
+<meta name="description" content="Horizon 常见问题：项目定位、AI-Native 的含义、GPLv3 许可证、成熟度边界、贡献与安全。">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<script>document.documentElement.dataset.theme=localStorage.getItem('hz-theme')||'light'</script>
+<style>
+:root{
+  --bg:#ffffff;--fg:#09090b;--card:#ffffff;--muted:#f4f4f5;--muted-fg:#71717a;
+  --border:#e4e4e7;--primary:#18181b;--primary-fg:#fafafa;
+}
+[data-theme=dark]{
+  --bg:#09090b;--fg:#fafafa;--card:#0c0c0e;--muted:#18181b;--muted-fg:#a1a1aa;
+  --border:#27272a;--primary:#fafafa;--primary-fg:#18181b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:Inter,-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+.site-head{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--border);
+  background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px)}
+.head-in{display:flex;align-items:center;height:56px;gap:8px;position:relative}
+.brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;
+  text-decoration:none;padding:6px 10px;border-radius:6px}
+.brand:hover{background:var(--muted)}
+.head-nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:2px}
+.head-nav a{text-decoration:none;font-size:14px;color:var(--muted-fg);padding:6px 12px;border-radius:6px}
+.head-nav a:hover{color:var(--fg);background:var(--muted)}
+.head-nav a.on{color:var(--fg)}
+.head-right{margin-left:auto;display:flex;gap:4px;align-items:center}
+.icon-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;
+  border:1px solid transparent;background:transparent;color:var(--muted-fg);border-radius:6px;cursor:pointer}
+.icon-btn:hover{color:var(--fg);background:var(--muted)}
+.gh-btn{display:flex;align-items:center;gap:7px;font-size:13.5px;text-decoration:none;
+  border:1px solid var(--border);border-radius:6px;padding:5px 12px;color:var(--fg)}
+.gh-btn:hover{background:var(--muted)}
+[data-theme=light] .moon{display:block}[data-theme=light] .sun{display:none}
+[data-theme=dark] .moon{display:none}[data-theme=dark] .sun{display:block}
+.page-head{padding:44px 0 32px;border-bottom:1px solid var(--border)}
+.page-head h1{margin:0 0 6px;font-size:1.8rem;font-weight:700;letter-spacing:-.02em}
+.page-head p{margin:0;color:var(--muted-fg);max-width:42em}
+.faq-list{max-width:46rem;padding:8px 0 16px}
+details{border-bottom:1px solid var(--border)}
+details:first-of-type{border-top:1px solid var(--border)}
+summary{cursor:pointer;font-weight:500;font-size:14.5px;padding:16px 2px;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary .chev{flex-shrink:0;color:var(--muted-fg);transition:transform .15s}
+details[open] summary .chev{transform:rotate(90deg)}
+details .ans{color:var(--muted-fg);font-size:14px;padding:0 2px 18px}
+details .ans p{margin:0 0 10px}
+details .ans p:last-child{margin-bottom:0}
+details .ans strong{color:var(--fg);font-weight:600}
+details .ans a{text-decoration:underline;text-underline-offset:3px}
+code.inl{font-family:ui-monospace,Consolas,monospace;font-size:.86em;background:var(--muted);
+  border:1px solid var(--border);padding:1px 5px;border-radius:4px;color:var(--fg)}
+footer{border-top:1px solid var(--border);padding:32px 0 42px;margin-top:40px;text-align:center;color:var(--muted-fg);font-size:13px}
+footer nav{display:flex;gap:20px;justify-content:center;margin-bottom:10px}
+footer a{color:var(--muted-fg);text-decoration:none}
+footer a:hover{color:var(--fg)}
+@media (max-width:620px){.head-nav{display:none}}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="index.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"/></svg>
+      Horizon
+    </a>
+    <nav class="head-nav">
+      <a href="index.html">首页</a>
+      <a href="features.html">功能</a>
+      <a href="quickstart.html">快速开始</a>
+      <a href="docs.html">文档</a>
+      <a class="on" href="faq.html">FAQ</a>
+    </nav>
+    <div class="head-right">
+      <button class="icon-btn" id="themeToggle" aria-label="切换主题">
+        <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a class="gh-btn" href="https://github.com/itophp/horizon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.35.77 1.05.77 2.12v3.14c0 .3.21.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <h1>常见问题</h1>
+  <p>关于 Horizon 的定位、许可证、成熟度与参与方式。答案以仓库文档为准。</p>
+</div>
+
+<div class="wrap faq-list">
+  <details open>
+    <summary>Horizon 是什么，不是什么？<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></summary>
+    <div class="ans">
+      <p>Horizon 是<strong>面向企业应用的 AI 原生框架</strong>：把业务实体、Schema 契约、可执行能力、智能决策、流程编排、人工参与和业务事件组织成一个整体，让 Agent 在明确的权限与业务边界内推进工作。</p>
+      <p>它不是现成的业务系统，也不是无代码搭建平台。业务模块（文章、示例应用等）用于验证框架机制；真实的业务语义、规则与集成仍通过工程开发和验证交付。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>「AI-Native」在这里具体指什么？<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></summary>
+    <div class="ans">
+      <p>指让智能参与成为应用的<strong>运行机制</strong>，而不是附加的聊天窗口：应用向 Agent 提供业务语义、可信上下文、可执行能力和持续的任务状态；Agent 在治理边界内把目标转化为行动；应用再以真实业务结果回应。</p>
+      <p>具体体现为六点：业务可理解、能力可发现可组合、决策可协作、执行可治理、过程可持续、结果可反馈。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>和常见的低代码 / 工作流平台有什么区别？<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></summary>
+    <div class="ans">
+      <p>核心区别是<strong>单一能力契约</strong>：业务动作只注册一次，页面按钮、Agent 工具、Workflow 节点和外部 API 都经过同一个 Capability Gateway 执行，共享权限、审批与执行记录。</p>
+      <p>大多数平台为每个入口维护各自的业务规则与权限模型；Horizon 中编排只是组织工作的方式——流程启动和每个业务节点仍必须经过 Gateway 授权。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>采用什么开源协议？可以商用吗？<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></summary>
+    <div class="ans">
+      <p>项目采用 <strong>GPL-3.0-or-later</strong>。你可以自由使用、修改和分发，但分发衍生作品时必须同样以 GPLv3 开源并提供完整对应源码。</p>
+      <p>将本项目作为网络服务对外提供时，GPLv3 不要求向服务使用者开放源码；如需覆盖该场景，应改用 AGPL-3.0。第三方依赖中 Eino、MCP Go SDK 为 Apache-2.0，Goa、shadcn、MDXEditor 等为 MIT，均与 GPLv3 兼容。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>项目的成熟度如何？哪些还没实现？<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></summary>
+    <div class="ans">
+      <p>框架机制与具体业务接入有各自的成熟度，<strong>概念图不表示所有场景都已开箱即用</strong>。当前支持范围、已知限制与验证记录保留在<a href="https://github.com/itophp/horizon/blob/main/docs/verification.md">工程验收记录</a>等文档中。</p>
+      <p>部分仍在建设中的能力：Memory Center 的自动提炼、向量检索与自动清理；编排画布的完整在线 DSL 保存与灰度发布等。文档中会明确区分「已实现 / 已验证 / 待决策」。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Agent 会不会越权执行危险操作？<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></summary>
+    <div class="ans">
+      <p>不会——权限、风险等级、审批和深度限制是<strong>代码里的确定性规则</strong>，不是模型承诺。人类点击可执行 high 风险动作；Agent、Workflow、事件和 API 发起的 high 风险动作必须人工确认；critical 对自动化完全关闭。</p>
+      <p>审批通过后使用申请人身份重建执行；工具 Schema、页面注册和模型输出都不能替代服务端授权。Agent 不能批准自己的权限。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>如何参与贡献？<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></summary>
+    <div class="ans">
+      <p>先阅读 <a href="https://github.com/itophp/horizon/blob/main/AGENTS.md">AGENTS.md</a> 了解架构边界，按<a href="https://github.com/itophp/horizon/blob/main/docs/agent-tooling.md">任务工具矩阵</a>选择对应的开发流程。提交前使用快速门禁验证：</p>
+      <p><code class="inl">make ci-fast</code>（无需数据库与浏览器）；触及表结构时加 <code class="inl">make test-integration</code>。文档变更运行 <code class="inl">make check-rules</code>。</p>
+      <p>注意：推送或开 PR 会触发远程 CI 的全量 E2E；完整浏览器集合在本地默认暂停，执行前需要确认授权范围。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>部署时有哪些安全注意事项？<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></summary>
+    <div class="ans">
+      <p>初始账号不提供通用默认密码，由 <code class="inl">make bootstrap</code> 以环境变量创建。公网部署要求 HTTPS 和 <code class="inl">COOKIE_SECURE=true</code>；会话为 8 小时 HttpOnly cookie，写请求校验 Origin + CSRF；密码使用 Argon2id。</p>
+      <p>启用加密配置需提供 <code class="inl">SETTINGS_ENCRYPTION_KEY</code>；附件目录受 <code class="inl">FILE_STORAGE_ROOT</code> 限制；SMTP 主机须加入白名单。数据库、存储目录与加密根密钥须配套备份。</p>
+    </div>
+  </details>
+</div>
+
+<footer>
+  <div class="wrap">
+    <nav>
+      <a href="features.html">功能</a><a href="quickstart.html">快速开始</a>
+      <a href="docs.html">文档</a><a href="faq.html">FAQ</a>
+      <a href="https://github.com/itophp/horizon">GitHub</a>
+    </nav>
+    <div>Copyright © 2026 Horizon contributors · GPL-3.0-or-later</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.getElementById('themeToggle').addEventListener('click',function(){
+    var r=document.documentElement;
+    r.dataset.theme=r.dataset.theme==='dark'?'light':'dark';
+    localStorage.setItem('hz-theme',r.dataset.theme);
+  });
+})();
+</script>
+</body>
+</html>
