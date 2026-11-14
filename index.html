@@ -56,7 +56,7 @@ footer a:hover{color:var(--fg)}
 <link rel="stylesheet" href="assets/site-content.css">
 <link rel="stylesheet" href="assets/home.css">
 </head>
-<body>
+<body class="home-page">
 <header class="site-head">
   <div class="wrap head-in">
     <a class="brand" href="index.html">
@@ -64,7 +64,7 @@ footer a:hover{color:var(--fg)}
       Horizon
     </a>
     <nav class="head-nav">
-      <a class="on" href="index.html">首页</a>
+      <a class="on" href="index.html" aria-current="page">首页</a>
       <a href="features.html">功能</a>
       <a href="quickstart.html">快速开始</a>
       <a href="docs.html">文档</a>
@@ -85,27 +85,44 @@ footer a:hover{color:var(--fg)}
 
 <main class="home home-editorial">
   <section class="home-hero">
-    <div class="wrap hero-layout">
-      <div>
-        <p class="product-type">Horizon · 开源 AI 原生企业应用框架</p>
-        <h1>为业务用户减负的 <span>AI 原生应用框架</span></h1>
-        <p class="hero-summary">用 Horizon 构建企业应用，把 AI 辅助嵌入表格、表单、详情页和工作流。用户打开列表就能按需分析风险，录入时可以核对并采纳字段建议，也可以把多步任务交给 Agent 推进。</p>
-        <p class="hero-detail">从底层开始，页面、Agent 和 Workflow 就共用业务能力。业务代码负责计算、权限和状态变更，AI 帮助提取信息、解释差异和准备操作，用户负责复核与关键决定。</p>
+    <div class="wrap home-lead">
+      <div class="lead-heading">
+        <h1>AI 原生企业应用框架</h1>
+        <p class="hero-summary">用 Horizon 构建业务页面、Agent 和工作流。用户可以在原界面分析风险、核对录入建议，也可以把多步任务交给 Agent。页面与 Agent 共用业务能力，权限、审批和状态变更由服务端处理。</p>
         <div class="home-actions">
-          <a class="action primary" href="#how-it-works">查看运行机制</a>
-          <a class="action" href="quickstart.html">通过 CLI 开始</a>
+          <a class="action primary" href="quickstart.html">快速开始</a>
+          <a class="action" href="#how-it-works">查看运行机制</a>
         </div>
       </div>
-      <figure class="contract-flow">
-        <figcaption>AI 辅助如何进入一次业务操作</figcaption>
-        <ol class="contract-sequence">
-          <li><strong>用户选择任务</strong><p>在当前记录上请求分析、字段建议或录入草稿。</p></li>
-          <li><strong>应用提供上下文</strong><p>按配置绑定业务对象、当前字段和授权数据。</p></li>
-          <li><span>返回页面</span><strong>风险摘要、可用依据或可编辑的草稿</strong><p>用户在原界面查看、补充信息或采纳建议。</p></li>
-          <li><span>执行阶段</span><strong>通过业务能力提交，按策略请求确认</strong><p>Gateway 校验权限与参数，由业务代码更新状态。</p></li>
-        </ol>
+
+      <figure class="cli-example">
+        <figcaption>查看哪些页面使用同一个业务能力</figcaption>
+        <div class="cli-command"><code><span aria-hidden="true">$</span> ./horizon-cli refs capability:project.get@1.0.0</code></div>
+        <dl class="cli-output">
+          <div><dt>业务能力</dt><dd><code>project.get@1.0.0</code></dd></div>
+          <div><dt>项目详情页</dt><dd><code>projects/project.detail@2.0.0</code></dd></div>
+          <div><dt>项目任务页</dt><dd><code>projects/project.tasks@2.0.0</code></dd></div>
+        </dl>
+        <p>CLI 查询结果节选。两个页面的 Provider 引用同一个项目读取契约。是否可调用仍由运行时按身份与策略检查。</p>
       </figure>
     </div>
+  </section>
+
+  <nav class="home-index wrap" aria-label="首页内容">
+    <a href="#how-it-works">运行机制</a>
+    <a href="#framework">框架能力</a>
+    <a href="#ai-components">AI 组件</a>
+    <a href="#erp-scenarios">ERP 设计场景</a>
+  </nav>
+
+  <section class="home-sequence wrap" aria-labelledby="sequence-title">
+    <h2 id="sequence-title">AI 辅助如何进入一次业务操作</h2>
+    <ol role="list">
+      <li><h3>用户选择任务</h3><p>在当前记录上请求分析、字段建议或录入草稿。</p></li>
+      <li><h3>应用提供上下文</h3><p>按配置绑定业务对象、当前字段和授权数据。</p></li>
+      <li><h3>返回页面</h3><p>用户在原界面查看风险摘要和依据，补充信息或采纳草稿。</p></li>
+      <li><h3>执行阶段</h3><p>通过业务能力提交，按策略请求确认。Gateway 校验权限与参数，由业务代码更新状态。</p></li>
+    </ol>
   </section>
 
   <section class="home-section wrap reading-layout" id="how-it-works">
