@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>快速开始 — Horizon</title>
-<meta name="description" content="Horizon 本地启动指南：环境要求、数据库与迁移、初始化账号、启动前后端与常用 make 命令。">
+<meta name="description" content="使用 Horizon CLI 离线查看能力和流程契约，检查本地环境、启动前后端，并体验文章发布流程。">
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 <script>document.documentElement.dataset.theme=localStorage.getItem('hz-theme')||'light'</script>
 <style>
@@ -94,6 +94,7 @@ footer a{color:var(--muted-fg);text-decoration:none}
 footer a:hover{color:var(--fg)}
 @media (max-width:620px){.head-nav{display:none}}
 </style>
+<link rel="stylesheet" href="assets/site-content.css">
 </head>
 <body>
 <header class="site-head">
@@ -122,84 +123,69 @@ footer a:hover{color:var(--fg)}
   </div>
 </header>
 
-<div class="wrap page-head">
-  <h1>快速开始</h1>
-  <p>在本地把 Horizon 前后端完整跑起来大约需要十分钟。命令与 <a href="https://github.com/itophp/horizon/blob/main/docs/local-development.md">docs/local-development.md</a> 保持一致。</p>
-</div>
-
-<div class="wrap content">
-  <h2>环境要求</h2>
-  <table>
-    <tr><th style="width:7em">依赖</th><th style="width:8.5em">版本</th><th>说明</th></tr>
-    <tr><td>Node.js</td><td>≥ 22.23.2</td><td>前端构建与工具链</td></tr>
-    <tr><td>pnpm</td><td>10.14.0</td><td>使用锁文件版本安装依赖</td></tr>
-    <tr><td>Go</td><td>1.27.3</td><td><code>scripts/go.sh</code> 优先使用项目内 <code>.tools/go</code>，不修改系统 Go</td></tr>
-    <tr><td>Docker</td><td>支持 Compose</td><td>运行 PostgreSQL</td></tr>
-  </table>
-
-  <h2>安装</h2>
-  <div class="codeblock"><div class="code-head"><span>sh</span><button class="copy" type="button">复制</button></div>
+<main>
+  <div class="wrap page-head">
+    <h1>使用 Horizon CLI 快速开始</h1>
+    <p>先离线看懂一个业务动作如何注册，再启动前后端，在页面里体验 Agent 初筛与人工复核。</p>
+  </div>
+  <div class="wrap content">
+    <h2>构建 CLI</h2>
+    <p>准备 Go 1.27.3。运行完整应用还需要 Node.js ≥ 22.23.2、pnpm 10.14.0，以及用于本地 PostgreSQL 的 Docker Compose。已有 PostgreSQL 时可以通过 <code>DATABASE_URL</code> 使用自己的实例。</p>
+    <div class="codeblock"><div class="code-head"><span>Shell</span><button class="copy" type="button">复制</button></div>
 <pre>git clone https://github.com/itophp/horizon.git
 cd horizon
-cp .env.example .env
-pnpm install --frozen-lockfile  <span class="c"># 按锁文件版本安装</span></pre></div>
+go build -trimpath -o horizon-cli ./foundation/cmd/horizon-cli</pre></div>
+    <p>Windows PowerShell 可用 <code>go build -trimpath -o horizon-cli.exe ./foundation/cmd/horizon-cli</code>，后续命令使用 <code>.\horizon-cli.exe</code>。仓库自带的二进制可用于快速浏览，源码有更新时重新构建再查看注册定义。</p>
 
-  <h2>启动</h2>
-  <ol class="steps">
-    <li>
-      <h3>准备工具与数据库</h3>
-      <div class="codeblock"><div class="code-head"><span>sh</span><button class="copy" type="button">复制</button></div>
-<pre>make tools      <span class="c"># 安装项目内 Go 工具链</span>
-make db-up      <span class="c"># 启动 PostgreSQL 容器</span>
-make migrate    <span class="c"># 执行数据库迁移</span></pre></div>
-    </li>
-    <li>
-      <h3>初始化管理员账号</h3>
-      <p>在终端安全输入一个 12–128 字符的初始密码，不使用预设默认密码：</p>
-      <div class="codeblock"><div class="code-head"><span>sh</span><button class="copy" type="button">复制</button></div>
-<pre><span class="c"># read -s 不会回显密码</span>
-read -s BOOTSTRAP_PASSWORD; export BOOTSTRAP_PASSWORD
+    <h2>离线查看能力与流程</h2>
+    <p>下面的命令可在前后端和数据库停机时使用。先查能力输入与权限，再看流程节点如何引用它，最后查看文章详情页怎样绑定动作。</p>
+    <div class="codeblock"><div class="code-head"><span>Shell</span><button class="copy" type="button">复制</button></div>
+<pre>./horizon-cli capability schema article.submit@1.0.0
+./horizon-cli workflow schema article-publish@1.0.0
+./horizon-cli page schema articles/article.detail@2.0.0</pre></div>
+    <p>输出为 JSON。<code>schema</code> 描述定义的结构，<code>entry.definition</code> 是选中的注册定义。当前环境的租户版本和实际权限在运行时生效。</p>
+
+    <h2>准备本地服务</h2>
+    <p>首次启动前安装依赖、启动 PostgreSQL、应用迁移并创建管理员。请在仓库根目录运行以下命令，使用本地开发数据库。</p>
+    <div class="codeblock"><div class="code-head"><span>Shell</span><button class="copy" type="button">复制</button></div>
+<pre>cp .env.example .env
+pnpm install --frozen-lockfile
+make db-up
+make migrate</pre></div>
+    <p>已有 PostgreSQL 时，可跳过 <code>make db-up</code>。在执行迁移前，用 <code>./horizon-cli env configure</code> 写入本地配置，或在进程环境中设置 <code>DATABASE_URL</code>。</p>
+    <p>输入一个 12–128 字符的初始密码。以下命令适用于 Bash 和 Zsh。</p>
+    <div class="codeblock"><div class="code-head"><span>Shell</span><button class="copy" type="button">复制</button></div>
+<pre>read -s BOOTSTRAP_PASSWORD
+export BOOTSTRAP_PASSWORD
 BOOTSTRAP_USERNAME=admin make bootstrap
 unset BOOTSTRAP_PASSWORD</pre></div>
-      <div class="callout">初始账号由 <code>make bootstrap</code> 创建；已存在的工作区不会被重复初始化覆盖。默认工作区为 <code>workspace-default</code>。</div>
-    </li>
-    <li>
-      <h3>启动 API 与 Web</h3>
-      <div class="codeblock"><div class="code-head"><span>sh — 终端 1</span><button class="copy" type="button">复制</button></div>
-<pre>make dev-api</pre></div>
-      <div class="codeblock"><div class="code-head"><span>sh — 终端 2</span><button class="copy" type="button">复制</button></div>
-<pre>make dev</pre></div>
-    </li>
-    <li>
-      <h3>访问并验证</h3>
-      <p>打开 <a href="http://127.0.0.1:5173" style="text-decoration:underline;text-underline-offset:3px">http://127.0.0.1:5173</a>，进入 <code>/login</code> 使用刚创建的账号登录。API 健康检查为 <code>http://127.0.0.1:8080/api/health</code>；Vite 把同源 <code>/api</code> 代理给 Go，不需要开放 CORS。</p>
-      <figure>
-        <img src="assets/console-overview.svg" alt="Horizon 后台概览界面截图（占位）" loading="lazy">
-        <figcaption>登录后的后台概览。截图待补充：website/assets/console-overview.svg。</figcaption>
-      </figure>
-    </li>
-  </ol>
+    <p>若要体验文章发布，在启动前为本地 <code>.env</code> 配置 <code>SETTINGS_ENCRYPTION_KEY</code>，用于保存模型凭证。运行 <code>env check</code> 检查依赖和数据库连通性，处理报出的必需项后再启动 Go API 与 Vite。</p>
+    <div class="codeblock"><div class="code-head"><span>Shell</span><button class="copy" type="button">复制</button></div>
+<pre>./horizon-cli env check
+./horizon-cli start
+./horizon-cli status</pre></div>
+    <p>打开 <a href="http://127.0.0.1:5173/login">本地登录页</a>，用新建账号登录。可访问 <a href="http://127.0.0.1:8080/api/health">API health</a> 检查 API 进程是否存活，数据库连通性看 <code>env check</code>。</p>
 
-  <h2>常用命令</h2>
-  <table>
-    <tr><th style="width:13em">命令</th><th>作用</th></tr>
-    <tr><td><code>make generate</code></td><td>Goa → OpenAPI；sqlc；Orval → TanStack Query SDK</td></tr>
-    <tr><td><code>make ci-fast</code></td><td>无需数据库与浏览器的完整快速门禁</td></tr>
-    <tr><td><code>make lint</code> / <code>make test</code></td><td>ESLint + Go vet / 前端与 Go 单元测试</td></tr>
-    <tr><td><code>make test-integration</code></td><td>独立 PostgreSQL schema 中的集成测试</td></tr>
-    <tr><td><code>make test-e2e</code></td><td>启动真实前后端的端到端测试（需独立端口 5179/8099）</td></tr>
-    <tr><td><code>make db-down</code></td><td>停止数据库容器，开发数据卷保留</td></tr>
-    <tr><td><code>pnpm webmcp</code></td><td>启动 WebMCP 服务（默认 127.0.0.1:18793）</td></tr>
-  </table>
-  <div class="callout"><strong>测试节奏：</strong>日常开发累计待验项，阶段验收或提交前统一跑快速门禁。详见 <a href="https://github.com/itophp/horizon/blob/main/docs/testing.md" style="text-decoration:underline;text-underline-offset:3px">测试与质量门禁</a>。</div>
+    <h2 id="articles">体验文章发布与复核</h2>
+    <ol class="steps">
+      <li><h3>准备模型和权限</h3><p>进入系统设置，发布 <code>agent.enabled</code>、<code>agent.baseUrl</code>、<code>assistant.model</code> 和 <code>assistant.token</code>。提交账号需要文章读写、流程运行和 AI 使用权限。准备具备 <code>capability:approve</code> 的账号处理发布确认。</p></li>
+      <li><h3>提交一篇测试文章</h3><p>进入文章应用，新建一篇测试文章，并从详情页提交。观察 Agent 初筛和流程状态。初筛通过后，流程会等待发布确认。用具备审批权限的账号在 AI 工作台（<code>/ai</code>）查看并处理待确认动作。进入工作台也需要 <code>assistant:use</code>。</p></li>
+      <li><h3>确认业务结果</h3><p>返回文章详情与流程记录，核对审核结果、最终状态以及执行进度。未配置模型时，可以先用离线目录查看流程结构。</p></li>
+    </ol>
+    <p><a href="https://github.com/itophp/horizon/blob/main/docs/orchestration-example.md">模型配置与完整流程示例</a></p>
 
-  <h2>下一步</h2>
-  <div class="next">
-    <a href="features.html"><b>了解功能</b><span>能力契约、编排中心与任务闭环</span></a>
-    <a href="docs.html"><b>阅读文档</b><span>架构、开发流程与工程规范</span></a>
-    <a href="https://github.com/itophp/horizon/blob/main/docs/local-development.md"><b>本地开发说明</b><span>账号权限与环境细节</span></a>
+    <h2>查看状态、重启与停止</h2>
+    <div class="codeblock"><div class="code-head"><span>Shell</span><button class="copy" type="button">复制</button></div>
+<pre>./horizon-cli status
+./horizon-cli restart backend
+./horizon-cli stop</pre></div>
+    <p>进程状态与日志保存在 <code>.local/horizon-cli/</code>。这些服务命令只管理由 CLI 启动的前后端。</p>
+    <div class="next">
+      <a href="features.html"><b>功能介绍</b><span>理解系统机制和 AI 组件</span></a>
+      <a href="https://github.com/itophp/horizon/blob/main/docs/local-development.md"><b>本地开发说明</b><span>环境变量、CLI 参数和工程入口</span></a>
+    </div>
   </div>
-</div>
+</main>
 
 <footer>
   <div class="wrap">
@@ -223,7 +209,9 @@ unset BOOTSTRAP_PASSWORD</pre></div>
     var c=b.querySelector('.copy');if(!c)return;
     c.addEventListener('click',function(){
       var done=function(){c.textContent='已复制';setTimeout(function(){c.textContent='复制'},1500)};
-      if(navigator.clipboard)navigator.clipboard.writeText(b.querySelector('pre').innerText).then(done,done);
+      var failed=function(){c.textContent='请手动复制';setTimeout(function(){c.textContent='复制'},1500)};
+      if(navigator.clipboard)navigator.clipboard.writeText(b.querySelector('pre').innerText).then(done,failed);
+      else failed();
     });
   });
 })();

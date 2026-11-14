@@ -1,0 +1,225 @@
+.home-editorial {
+  --site-accent: #2851a1;
+  --site-surface: #f2f5fa;
+  --home-rule: #d6dfea;
+}
+
+[data-theme="dark"] .home-editorial {
+  --site-accent: #a6c4ff;
+  --site-surface: #141c29;
+  --home-rule: #354259;
+}
+
+.home-editorial .wrap,
+.home-editorial > .wrap {
+  max-width: 1200px;
+}
+
+.home-editorial .home-hero {
+  background: var(--bg);
+  padding-block: clamp(48px, 7vw, 96px);
+}
+
+.home-editorial .hero-layout {
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  gap: clamp(32px, 6vw, 84px);
+}
+
+.home-editorial h1 {
+  font-size: clamp(2.25rem, 4.2vw, 3.75rem);
+  line-height: 1.16;
+  text-wrap: balance;
+}
+
+.home-editorial h1 span {
+  display: block;
+}
+
+.home-editorial .hero-summary {
+  color: var(--fg);
+  max-width: 34em;
+  line-height: 1.85;
+}
+
+.home-editorial .hero-detail {
+  padding-left: 14px;
+  border-left: 2px solid var(--home-rule);
+  max-width: 34em;
+}
+
+.home-editorial .action {
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.home-editorial .action.primary {
+  color: #fff;
+  background: #2851a1;
+  border-color: #2851a1;
+}
+
+.home-editorial .action.primary:hover {
+  background: #1d3e80;
+}
+
+.home-editorial .contract-flow {
+  padding: clamp(22px, 3.5vw, 42px);
+  background: var(--site-surface);
+  border: 0;
+  border-radius: 3px;
+}
+
+.home-editorial .contract-flow figcaption {
+  font-size: 19px;
+  margin-bottom: 21px;
+}
+
+.contract-sequence {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 23px;
+  list-style: none;
+  border-left: 1px solid var(--home-rule);
+}
+
+.contract-sequence li {
+  position: relative;
+}
+
+.contract-sequence li + li {
+  margin-top: 15px;
+}
+
+.contract-sequence li::before {
+  content: "";
+  position: absolute;
+  top: .73em;
+  left: -27px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--site-accent);
+}
+
+.contract-sequence span,
+.contract-sequence strong {
+  display: block;
+}
+
+.contract-sequence span {
+  color: var(--site-accent);
+  font-size: 13px;
+}
+
+.contract-sequence p {
+  margin: 1px 0 0;
+  color: var(--muted-fg);
+  font-size: 14px;
+}
+
+.home-editorial .home-section {
+  padding-block: clamp(48px, 7.5vw, 96px);
+}
+
+.home-editorial h2 {
+  text-wrap: balance;
+}
+
+.home-editorial .reading-layout,
+.framework-layout {
+  display: grid;
+  grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
+  align-items: start;
+  gap: clamp(24px, 5vw, 64px);
+}
+
+.home-editorial .core-flow {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  margin: 0;
+}
+
+.home-editorial .core-flow li {
+  padding: 16px 0 18px;
+  border-top: 1px solid var(--home-rule);
+}
+
+.home-editorial .core-flow h3,
+.home-editorial .case-grid h3 {
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+
+.home-editorial a:not(.action) {
+  text-underline-offset: .2em;
+}
+
+.home-editorial .mechanism-list {
+  margin: 0;
+}
+
+.home-editorial .mechanism-list > div {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3px;
+  padding: 13px 0;
+  border-color: var(--home-rule);
+}
+
+.framework-layout {
+  margin-top: 27px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.framework-figure {
+  margin: 0;
+}
+
+.framework-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--home-rule);
+  background: #fff;
+}
+
+.framework-figure figcaption {
+  margin-top: 8px;
+  color: var(--muted-fg);
+  font-size: 13px;
+}
+
+.home-editorial .case-grid {
+  gap: clamp(20px, 3.5vw, 42px);
+}
+
+.home-editorial .case-grid article {
+  padding-top: 14px;
+  border-color: var(--home-rule);
+}
+
+.home-editorial .case-measure {
+  margin-top: 15px;
+}
+
+.home-editorial :focus-visible {
+  outline-color: var(--site-accent);
+}
+
+@media (max-width: 880px) {
+  .home-editorial .hero-layout,
+  .home-editorial .reading-layout,
+  .framework-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .framework-figure,
+  .home-editorial .contract-flow {
+    max-width: 38rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-editorial .action {
+    transition: none;
+  }
+}

@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Horizon — AI 原生企业应用框架</title>
-<meta name="description" content="Horizon 把业务能力、智能决策、流程编排、人工参与和业务事件组织成一个整体，让人和 Agent 围绕同一套业务能力协作。">
+<meta name="description" content="Horizon 是面向企业应用的开源 AI 原生框架。把录入、核对、分析、决策准备和受控执行嵌入现有业务界面，减少用户的重复操作。">
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-<meta property="og:image" content="assets/og.png">
 <script>document.documentElement.dataset.theme=localStorage.getItem('hz-theme')||'light'</script>
 <style>
 :root{
@@ -47,123 +46,15 @@ a{color:inherit}
 /* sun/moon */
 [data-theme=light] .moon{display:block}[data-theme=light] .sun{display:none}
 [data-theme=dark] .moon{display:none}[data-theme=dark] .sun{display:block}
-/* ===== hero ===== */
-.hero{text-align:center;padding:88px 0 64px}
-.badge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);
-  border-radius:999px;padding:4px 12px;font-size:12.5px;color:var(--muted-fg);margin-bottom:22px}
-.badge .dot{width:6px;height:6px;border-radius:50%;background:var(--ok)}
-.hero h1{font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.2;letter-spacing:-.03em;
-  font-weight:700;margin:0 0 16px}
-.hero h1 em{font-style:normal;color:var(--muted-fg)}
-.hero p{color:var(--muted-fg);font-size:16.5px;max-width:38em;margin:0 auto 28px}
-.hero .cta{display:flex;gap:10px;justify-content:center}
-.btn{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:500;
-  padding:8px 16px;border-radius:6px;text-decoration:none;border:1px solid transparent;cursor:pointer}
-.btn-primary{background:var(--primary);color:var(--primary-fg)}
-.btn-primary:hover{opacity:.88}
-.btn-outline{border-color:var(--border);color:var(--fg)}
-.btn-outline:hover{background:var(--muted)}
-.hero .note{margin-top:18px;font-size:13px;color:var(--muted-fg)}
-kbd{font-family:ui-monospace,Consolas,monospace;font-size:.85em;border:1px solid var(--border);
-  border-bottom-width:2px;border-radius:4px;padding:1px 5px;background:var(--muted)}
-/* ===== sections ===== */
-section{padding:56px 0;border-top:1px solid var(--border)}
-section:first-of-type{border-top:none}
-.sec-head{margin-bottom:26px}
-.sec-head h2{font-size:1.55rem;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
-.sec-head p{color:var(--muted-fg);margin:0;max-width:44em}
-/* ===== bento ===== */
-.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.card{border:1px solid var(--border);border-radius:10px;background:var(--card);padding:20px;display:flex;flex-direction:column}
-.card.span2{grid-column:span 2}
-.card h3{font-size:14.5px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em}
-.card>p{font-size:13px;color:var(--muted-fg);margin:0 0 14px;line-height:1.6}
-.demo{border:1px solid var(--border);border-radius:8px;background:var(--muted);
-  padding:14px;flex:1;display:flex;flex-direction:column;min-height:0}
-/* demo: invocation console */
-.inv-bar{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
-select.mini{font:12.5px/1.4 inherit;font-size:12.5px;color:var(--fg);background:var(--bg);
-  border:1px solid var(--border);border-radius:6px;padding:5px 8px}
-select.mini:focus{outline:2px solid var(--ring);outline-offset:-1px}
-.run{font-size:12.5px;font-weight:500;background:var(--primary);color:var(--primary-fg);
-  border:none;border-radius:6px;padding:6px 14px;cursor:pointer}
-.run:disabled{opacity:.5;cursor:default}
-.console{font-family:ui-monospace,"SF Mono",Consolas,monospace;font-size:12px;line-height:1.8;
-  background:var(--code-bg);color:var(--code-fg);border-radius:6px;padding:12px 14px;
-  flex:1;overflow:auto;min-height:150px;white-space:pre-wrap;word-break:break-all}
-.console .ok{color:var(--ok)}.console .dim{color:#71717a}.console .k{color:#93c5fd}
-.console .pend{color:var(--warn)}
-.approve-row{display:flex;gap:8px;margin-top:10px}
-.mini-btn{font-size:12px;border:1px solid var(--border);background:var(--bg);color:var(--fg);
-  border-radius:6px;padding:4px 12px;cursor:pointer}
-.mini-btn:hover{background:var(--muted)}
-.mini-btn.primary{background:var(--primary);color:var(--primary-fg);border-color:transparent}
-/* demo: plan switch */
-.pills{display:inline-flex;border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:12px}
-.pills button{font-size:12px;padding:5px 13px;border:none;background:transparent;color:var(--muted-fg);cursor:pointer}
-.pills button.on{background:var(--primary);color:var(--primary-fg)}
-.flow-box{display:flex;flex-direction:column;gap:8px;flex:1;justify-content:center}
-.fnode{display:flex;align-items:center;gap:8px;border:1px solid var(--border);background:var(--bg);
-  border-radius:6px;padding:7px 12px;font-size:12.5px}
-.fnode .t{font-weight:600}
-.fnode .d{color:var(--muted-fg);font-size:11.5px}
-.fnode.hl{border-color:var(--fg)}
-.farrow{align-self:center;color:var(--muted-fg);font-size:12px;line-height:1}
-/* demo: timeline */
-.tl{list-style:none;margin:0;padding:0;flex:1;display:flex;flex-direction:column;justify-content:center}
-.tl li{display:flex;gap:10px;align-items:baseline;padding:5px 0;font-size:12.5px;color:var(--muted-fg)}
-.tl li .n{font-family:ui-monospace,Consolas,monospace;font-size:11px;color:var(--muted-fg);
-  border:1px solid var(--border);border-radius:4px;padding:0 5px;background:var(--bg)}
-.tl li.on{color:var(--fg);font-weight:500}
-.tl li.on .n{border-color:var(--fg);color:var(--fg)}
-.tl li.done{color:var(--muted-fg)}
-.tl li.done .n{color:var(--ok);border-color:transparent}
-/* demo: policy matrix */
-.matrix{font-size:12px;border-collapse:collapse;width:100%}
-.matrix th{font-weight:500;color:var(--muted-fg);text-align:left;padding:6px 8px;border-bottom:1px solid var(--border)}
-.matrix td{padding:7px 8px;border-bottom:1px solid var(--border)}
-.matrix tr:last-child td{border-bottom:none}
-.tag{display:inline-block;border:1px solid var(--border);border-radius:999px;
-  padding:0 8px;font-size:11px;color:var(--muted-fg);background:var(--bg)}
-.tag.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,var(--border))}
-.tag.warn{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,var(--border))}
-/* ===== figures & code ===== */
-figure{margin:22px 0;border:1px solid var(--border);border-radius:10px;background:var(--card);padding:16px}
-figure img{width:100%;height:auto;display:block;border-radius:6px}
-[data-theme=dark] figure img{background:#fff}
-figcaption{font-size:12.5px;color:var(--muted-fg);padding-top:10px;margin-top:2px;border-top:1px solid var(--border)}
-.codeblock{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:14px 0}
-.code-head{display:flex;justify-content:space-between;align-items:center;padding:6px 8px 6px 13px;
-  background:var(--muted);font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:var(--muted-fg)}
-.copy{cursor:pointer;border:1px solid var(--border);background:var(--bg);color:var(--muted-fg);
-  border-radius:5px;padding:2px 10px;font-size:11.5px}
-.copy:hover{color:var(--fg)}
-.codeblock pre{margin:0;padding:14px 16px;overflow-x:auto;background:var(--code-bg);color:var(--code-fg);
-  font:12.5px/1.8 ui-monospace,"SF Mono",Consolas,monospace}
-.codeblock .c{color:#6b7280}
-.split{display:grid;grid-template-columns:5fr 6fr;gap:32px;align-items:start}
-.split p{color:var(--muted-fg);font-size:14px;margin:0 0 10px}
-.split p strong{color:var(--fg)}
-code.inl{font-family:ui-monospace,Consolas,monospace;font-size:.86em;background:var(--muted);
-  border:1px solid var(--border);padding:1px 5px;border-radius:4px}
-section a{text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:3px}
-section a:hover{text-decoration-color:var(--fg)}
-/* ===== news ===== */
-.news{max-width:46rem}
-.news li{display:flex;gap:16px;padding:9px 2px;border-bottom:1px solid var(--border);
-  list-style:none;font-size:14px;color:var(--muted-fg)}
-.news time{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;color:var(--muted-fg);min-width:6.6em;padding-top:1px}
-.news ul{margin:0;padding:0}
 /* ===== footer ===== */
 footer{border-top:1px solid var(--border);padding:36px 0 44px;text-align:center;
   color:var(--muted-fg);font-size:13px}
 footer nav{display:flex;gap:20px;justify-content:center;margin-bottom:12px}
 footer a{color:var(--muted-fg);text-decoration:none}
 footer a:hover{color:var(--fg)}
-@media (max-width:900px){.bento{grid-template-columns:1fr 1fr}.card.span2{grid-column:span 2}
-  .head-nav{display:none}.split{grid-template-columns:1fr}}
-@media (max-width:620px){.bento{grid-template-columns:1fr}.card.span2{grid-column:span 1}}
 </style>
+<link rel="stylesheet" href="assets/site-content.css">
+<link rel="stylesheet" href="assets/home.css">
 </head>
 <body>
 <header class="site-head">
@@ -192,152 +83,141 @@ footer a:hover{color:var(--fg)}
   </div>
 </header>
 
-<main>
-<div class="wrap hero">
-  <div class="badge"><span class="dot"></span>AI-Native Application Framework</div>
-  <h1>让人和 Agent，<br>围绕<em>同一套业务能力</em>协作</h1>
-  <p>业务动作只注册一次。页面按钮、Agent 工具、流程节点和外部 API 经过同一个 Capability Gateway 执行，共享权限、审批与执行记录。</p>
-  <div class="cta">
-    <a class="btn btn-primary" href="quickstart.html">开始使用</a>
-    <a class="btn btn-outline" href="https://github.com/itophp/horizon">GitHub</a>
-  </div>
-  <p class="note">Go · React · PostgreSQL · Eino · <a href="https://github.com/itophp/horizon/blob/main/LICENSE" style="color:inherit">GPL-3.0-or-later</a></p>
-</div>
-
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>一切经过 Gateway</h2>
-      <p>权限、风险分级、审批与审计是代码里的确定性规则，不依赖模型自觉。以下为纯前端交互演示，行为规则来自框架文档。</p>
-    </div>
-    <div class="bento">
-      <div class="card span2">
-        <h3>发起一次能力调用</h3>
-        <p>选择能力并运行，观察 Gateway 的检查链。切换到高风险能力（memory.policy.set）时会暂停等待人工确认。</p>
-        <div class="demo">
-          <div class="inv-bar">
-            <select class="mini" id="capSel">
-              <option value="get">article.get · 读 · low</option>
-              <option value="submit">article.submit · 写 · medium</option>
-              <option value="policy">memory.policy.set · 写 · high</option>
-            </select>
-            <button class="run" id="runBtn" type="button">运行</button>
-            <span style="font-size:11.5px;color:var(--muted-fg)">POST /api/capabilities/{name}/invocations</span>
-          </div>
-          <div class="console" id="console"><span class="dim">// 选择能力后点击「运行」</span></div>
-          <div class="approve-row" id="approveRow" style="display:none">
-            <button class="mini-btn primary" id="okBtn" type="button">批准执行</button>
-            <button class="mini-btn" id="noBtn" type="button">拒绝</button>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <h3>执行方案切换</h3>
-        <p>同一能力入口，三种已发布方案。</p>
-        <div class="demo">
-          <div class="pills" id="planPills">
-            <button class="on" data-plan="direct" type="button">Direct</button>
-            <button data-plan="workflow" type="button">Workflow</button>
-            <button data-plan="graph" type="button">Graph</button>
-          </div>
-          <div class="flow-box" id="planFlow"></div>
-        </div>
-      </div>
-      <div class="card">
-        <h3>任务闭环</h3>
-        <p>一次任务从意图到结果的六个环节。</p>
-        <div class="demo">
-          <ul class="tl" id="tl">
-            <li><span class="n">01</span>理解目标 · 识别完成条件</li>
-            <li><span class="n">02</span>建立上下文 · 身份与授权对象</li>
-            <li><span class="n">03</span>组织行动 · 流程内推进</li>
-            <li><span class="n">04</span>执行能力 · 经 Gateway 调用</li>
-            <li><span class="n">05</span>处理变化 · 暂停或交给人</li>
-            <li><span class="n">06</span>确认结果 · 事件驱动后续</li>
-          </ul>
-        </div>
-      </div>
-      <div class="card span2">
-        <h3>风险 × 发起方：审批矩阵</h3>
-        <p>人类点击可执行 high 风险动作；Agent / Workflow / 事件 / API 发起的 high 必须人工确认；critical 对自动化关闭。</p>
-        <div class="demo">
-          <table class="matrix">
-            <tr><th>风险等级</th><th>人（页面）</th><th>Agent / Workflow</th><th>事件 / API</th></tr>
-            <tr><td><span class="tag">low</span></td><td><span class="tag ok">自动执行</span></td><td><span class="tag ok">自动执行</span></td><td><span class="tag ok">自动执行</span></td></tr>
-            <tr><td><span class="tag">medium</span></td><td><span class="tag ok">自动执行</span></td><td><span class="tag ok">自动执行</span></td><td><span class="tag ok">自动执行</span></td></tr>
-            <tr><td><span class="tag warn">high</span></td><td><span class="tag ok">直接执行</span></td><td><span class="tag warn">人工确认</span></td><td><span class="tag warn">人工确认</span></td></tr>
-            <tr><td><span class="tag warn">critical</span></td><td><span class="tag warn">第二人审批</span></td><td><span class="tag warn">关闭</span></td><td><span class="tag warn">关闭</span></td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>能力契约，写在代码里</h2>
-      <p>框架里没有「配置出来的动作」。每一项业务能力都是显式声明的 Go 代码，随代码评审和测试交付。</p>
-    </div>
-    <div class="split">
+<main class="home home-editorial">
+  <section class="home-hero">
+    <div class="wrap hero-layout">
       <div>
-        <p><strong>声明即契约。</strong>右侧是示例模块中真实注册的只读能力：权限 <code class="inl">example:read</code>、低风险自动批准、输入只接受一个正整数，输出投影明确到字段，只有 <code class="inl">id</code> 允许进入日志。</p>
-        <p>页面按钮、Agent 工具或流程节点调用它时，走的是同一条 Gateway 路径——不存在第二套业务规则。</p>
-        <p><a href="features.html#capability">能力机制的完整说明 →</a></p>
+        <p class="product-type">Horizon · 开源 AI 原生企业应用框架</p>
+        <h1>为业务用户减负的 <span>AI 原生应用框架</span></h1>
+        <p class="hero-summary">用 Horizon 构建企业应用，把 AI 辅助嵌入表格、表单、详情页和工作流。用户打开列表就能按需分析风险，录入时可以核对并采纳字段建议，也可以把多步任务交给 Agent 推进。</p>
+        <p class="hero-detail">从底层开始，页面、Agent 和 Workflow 就共用业务能力。业务代码负责计算、权限和状态变更，AI 帮助提取信息、解释差异和准备操作，用户负责复核与关键决定。</p>
+        <div class="home-actions">
+          <a class="action primary" href="#how-it-works">查看运行机制</a>
+          <a class="action" href="quickstart.html">通过 CLI 开始</a>
+        </div>
       </div>
-      <div class="codeblock"><div class="code-head"><span>services/applications/example/module.go</span><button class="copy" type="button">复制</button></div>
-<pre>contracts.Definition{
-    Layer:      contracts.LayerAtomic,
-    Name:       "example.record.get",
-    Version:    "1.0.0",
-    Permission: ReadPermission,
-    Risk:       contracts.RiskLow,
-    Approval:   contracts.ApprovalAuto,
-    ReadOnly:   true,
-    Input: contracts.Object(map[string]*contracts.Schema{
-        "id": contracts.Int(1, 1&lt;&lt;53),
-    }, "id"),
-    Output: contracts.Object(map[string]*contracts.Schema{
-        "id": {Type: "integer"}, "title": {Type: "string"},
-        "status": {Type: "string"}, "ready": {Type: "boolean"},
-    }, "id", "title", "status", "ready"),
-    Loggable: []string{"id"},
-}</pre></div>
+      <figure class="contract-flow">
+        <figcaption>AI 辅助如何进入一次业务操作</figcaption>
+        <ol class="contract-sequence">
+          <li><strong>用户选择任务</strong><p>在当前记录上请求分析、字段建议或录入草稿。</p></li>
+          <li><strong>应用提供上下文</strong><p>按配置绑定业务对象、当前字段和授权数据。</p></li>
+          <li><span>返回页面</span><strong>风险摘要、可用依据或可编辑的草稿</strong><p>用户在原界面查看、补充信息或采纳建议。</p></li>
+          <li><span>执行阶段</span><strong>通过业务能力提交，按策略请求确认</strong><p>Gateway 校验权限与参数，由业务代码更新状态。</p></li>
+        </ol>
+      </figure>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>概念架构</h2>
-      <p>框架把「谁发起工作」「如何组织任务」「什么动作被允许」「结果如何继续驱动业务」连接起来。下图为仓库中的原始架构图。</p>
-    </div>
-    <figure>
-      <img src="assets/img/horizon-application-capability-memory.svg" alt="Horizon 应用、能力与记忆概念架构" loading="lazy">
-      <figcaption>来源：docs/assets/horizon-application-capability-memory.svg，与代码同步维护。</figcaption>
-    </figure>
-  </div>
-</section>
+  <section class="home-section wrap reading-layout" id="how-it-works">
+    <header>
+      <h2>从当前业务界面到受控执行</h2>
+      <p class="section-intro">AI 辅助由业务界面和业务契约共同定义。开发者配置任务所需的上下文和可用动作，用户在处理记录时触发辅助，系统按当前身份执行。</p>
+    </header>
+    <ol class="core-flow" role="list">
+      <li>
+        <h3>读取当前业务上下文</h3>
+        <p>业务元数据描述记录有哪些字段、和什么对象关联、处于什么状态。Application Runtime 的 Provider 读取当前身份有权访问的数据，AI 组件和 Agent 分析按配置取得所需字段。</p>
+        <p>分析可以基于当前记录和指定的关联数据，用户能看到结论、依据和分析覆盖范围。</p>
+        <a href="features.html#model">业务元数据与契约</a>
+      </li>
+      <li>
+        <h3>选择可执行的业务动作</h3>
+        <p>开发者注册查询、创建、提交或状态变更等能力，声明版本、参数和风险。页面按钮和 Agent 工具引用同一项能力，工具可用性取决于当前身份、来源和业务策略。</p>
+        <p>Gateway 依据能力契约校验参数与权限，执行器按业务规则处理记录与数据范围。</p>
+        <a href="features.html#capability">Registry 与能力契约</a>
+      </li>
+      <li>
+        <h3>推进任务并交给人确认</h3>
+        <p>Workflow 定义步骤依赖、条件分支和等待点。Graph 可组织有界分析或循环，ADK Agent 在限定的工具和迭代预算内处理需要判断的步骤。</p>
+        <p>触发确认策略时，系统记录待审批调用并暂停。审批通过后重新核验原申请人的授权，再按原方案继续。</p>
+        <a href="features.html#workflow">任务编排与人工参与</a>
+      </li>
+      <li>
+        <h3>用业务结果完成反馈</h3>
+        <p>页面可以读取更新后的状态，任务可以根据能力返回的结构化结果继续。执行记录保留调用进度和结果，帮助用户确认哪些操作已完成、哪些仍在等待。</p>
+        <p>符合规则的业务事件进入事件链路，触发后续任务。后续任务的业务动作继续经 Gateway 执行。</p>
+        <a href="features.html#orchestration">执行、审计与事件</a>
+      </li>
+    </ol>
+  </section>
 
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>最近更新</h2>
+  <section class="home-section home-band" id="framework">
+    <div class="wrap">
+      <h2>框架提供哪些基础能力</h2>
+      <div class="framework-layout">
+        <dl class="mechanism-list">
+          <div><dt><a href="features.html#capability">Registry 与 Business Metadata Engine</a></dt><dd>业务模块声明实体、关系和状态转移，并将可执行动作及其 Schema 注册到能力目录。实体声明可以对照数据库迁移校验。页面和 Agent 可以由此理解同一个业务对象，并按契约引用动作。</dd></div>
+          <div><dt><a href="features.html#orchestration">Gateway、Workflow 与 Graph</a></dt><dd>调用经过身份、授权、参数、审批策略与幂等检查。简单操作由 Direct 执行，多步任务交给 Workflow，受限分析可用 Graph。能力编排中心管理已注册执行方案的发布、绑定和回滚。</dd></div>
+          <div><dt><a href="features.html#runtime">Application Runtime</a></dt><dd>配置导航、列表、表单和详情，把查询绑定到 Provider、把提交绑定到 Action。团队可以预览应用配置、审查差异并发布版本，也可以把 AI 分析和表单辅助嵌入相应页面。</dd></div>
+          <div><dt><a href="features.html#memory">Memory Center</a></dt><dd>汇集业务事件与任务运行元数据，支持按授权范围维护记忆、追溯来源和记录纠正。自动提炼和在 Agent 任务中直接使用记忆属于后续方向。</dd></div>
+          <div><dt><a href="features.html#plugin">Plugin 插件</a></dt><dd>通过插件交付实体、能力、权限、事件和应用界面。宿主校验版本与依赖，并将插件贡献接入共享目录。业务团队可以扩展自己的模块，也可以让已有能力供多个入口复用。</dd></div>
+        </dl>
+        <figure class="framework-figure">
+          <a href="assets/img/horizon-application-capability-memory.svg">
+            <img src="assets/img/horizon-application-capability-memory.svg" alt="Horizon 概念架构，展示应用、能力网关、业务执行与记忆之间的关系" width="1800" height="1800" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Horizon 概念架构 · 点击查看原图</figcaption>
+        </figure>
+      </div>
     </div>
-    <div class="news">
-      <ul>
-        <li><time>2026-11-06</time><span>能力编排中心：版本化执行方案（Direct / Workflow / Graph）与绑定、回滚</span></li>
-        <li><time>2026-11-06</time><span>架构文档更新：运行时与记忆机制说明、架构图刷新</span></li>
-        <li><time>2026-11-05</time><span>Application Runtime：版本化应用定义持久化与设计 Agent</span></li>
-        <li><time>2026-11-05</time><span>Memory Center 与应用运行时集成</span></li>
-        <li><time>2026-11-05</time><span>MCP 客户端对齐动态能力访问</span></li>
-      </ul>
-      <p style="margin-top:12px"><a href="https://github.com/itophp/horizon/commits">完整提交历史 →</a></p>
+  </section>
+
+  <section class="home-section wrap reading-layout" id="ai-components">
+    <header>
+      <h2>从录入到执行，五类可组合的 AI 辅助</h2>
+      <p class="section-intro">按岗位和业务环节选择需要的辅助。可以只在一个列表增加分析，也可以把核对、方案准备和人工确认组织进同一个任务。</p>
+      <p><a href="features.html#runtime-ai">查看现有组件、配置方式和扩展范围</a></p>
+    </header>
+    <dl class="mechanism-list">
+      <div><dt>辅助录入 · AI Input</dt><dd>把工作簿内容转换为可编辑的业务草稿，或根据表单已填字段起草描述。用户校对后再提交，应用负责校验字段和写入。</dd></div>
+      <div><dt>辅助核对 · AI Check</dt><dd>先由规则找出数量、金额或状态差异，再由 AI 辅助归类和解释，帮助用户优先复核异常。这是面向对账与业务检查的扩展方向。</dd></div>
+      <div><dt>辅助分析 · AI Analyze</dt><dd>在列表和详情中根据配置的字段生成风险摘要与依据。进一步的报表分析可以用来组织跨模块证据，并标明口径、期间和可能原因。</dd></div>
+      <div><dt>辅助决策 · AI Suggest</dt><dd>面向库存、采购等场景，可按成本、时效与业务约束组织备选方案。业务人员核对依据后选择方案。这是应用设计方向。</dd></div>
+      <div><dt>受控执行 · AI Act</dt><dd>Agent 或 Workflow 可以发起已授权的能力调用。涉及写入时可先准备草稿，按业务策略由用户提交或审批，再由领域逻辑执行。</dd></div>
+    </dl>
+  </section>
+
+  <section class="home-section home-band" id="erp-scenarios">
+    <div class="wrap">
+      <h2>用于 ERP 的三个设计场景</h2>
+      <p class="section-intro">采购、财务和库存的业务模块提供数据、规则和执行能力。试点可以对比使用 AI 辅助前后的人工耗时、返工与正确率，评估用户具体少做了哪些工作。</p>
+      <div class="case-grid erp-grid">
+        <article>
+          <h3>采购 · 优先核实交付风险</h3>
+          <p>用承诺日期和生产需求筛选可能影响交付的订单。AI 辅助列整理历史交付记录和风险依据，采购员优先核实异常，再决定是否催交或调整计划。</p>
+          <p class="case-measure"><strong>试点评估</strong> 每日检查耗时、误报和漏报。</p>
+        </article>
+        <article>
+          <h3>财务 · 缩短月结差异排查</h3>
+          <p>业务查询按期间、金额和单据状态找出入库未匹配发票等差异。AI 归类异常、整理凭证和可能原因，财务人员复核处理建议，分录与关账由领域逻辑执行。</p>
+          <p class="case-measure"><strong>试点评估</strong> 异常定位时间、核对正确率与证据覆盖。</p>
+        </article>
+        <article>
+          <h3>库存 · 对比缺料处理方案</h3>
+          <p>根据可用库存、交期和物料替代规则准备调拨、替代或采购方案。AI 整理各方案的时效和约束，业务人员决定采取哪项动作，库存变更经过授权和校验。</p>
+          <p class="case-measure"><strong>试点评估</strong> 方案准备时间、人工步骤数与返工率。</p>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="home-section" id="get-started">
+    <div class="wrap">
+      <h2>从一项自己的业务能力开始</h2>
+      <div class="case-grid">
+        <article>
+          <h3>先看系统怎样描述一项业务动作</h3>
+          <p>用 Horizon CLI 离线查看能力、页面和流程定义。沿着能力版本、页面绑定和 Workflow 节点的引用，理解一项动作怎样接入三个入口。</p>
+          <a href="quickstart.html">查看 CLI 快速开始</a>
+        </article>
+        <article>
+          <h3>把同一项能力接到页面和 Agent</h3>
+          <p>声明业务对象和动作契约，通过插件注册实现与权限。为页面绑定读取或提交动作，再按业务策略决定是否开放给 Agent，或放入需要人工确认的工作流。</p>
+          <a href="features.html#plugin">查看业务模块与插件机制</a>
+        </article>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -352,107 +232,11 @@ footer a:hover{color:var(--fg)}
 </footer>
 
 <script>
-(function(){
-  // 主题切换
-  var btn=document.getElementById('themeToggle');
-  if(btn)btn.addEventListener('click',function(){
-    var r=document.documentElement;
-    r.dataset.theme=r.dataset.theme==='dark'?'light':'dark';
-    localStorage.setItem('hz-theme',r.dataset.theme);
+  document.getElementById('themeToggle').addEventListener('click', function () {
+    const root = document.documentElement;
+    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('hz-theme', root.dataset.theme);
   });
-  // 复制按钮
-  document.querySelectorAll('.codeblock').forEach(function(b){
-    var c=b.querySelector('.copy');if(!c)return;
-    c.addEventListener('click',function(){
-      var done=function(){c.textContent='已复制';setTimeout(function(){c.textContent='复制'},1500)};
-      if(navigator.clipboard)navigator.clipboard.writeText(b.querySelector('pre').innerText).then(done,done);
-    });
-  });
-
-  // ===== 演示 1：能力调用 =====
-  var cons=document.getElementById('console');
-  var sel=document.getElementById('capSel');
-  var runBtn=document.getElementById('runBtn');
-  var approveRow=document.getElementById('approveRow');
-  var okBtn=document.getElementById('okBtn'),noBtn=document.getElementById('noBtn');
-  var timer=null;
-  var caps={
-    get:{name:'article.get',perm:'articles:read',risk:'low',out:'{"id":1,"title":"设计评审记录","status":"draft","ready":false}'},
-    submit:{name:'article.submit',perm:'articles:submit',risk:'medium',out:'{"id":1,"status":"submitted","reviewer":"reviewer-3"}'},
-    policy:{name:'memory.policy.set',perm:'memory:manage',risk:'high',out:'{"partition":"articles","retentionDays":365,"revision":4}'}
-  };
-  function line(html,cls){var s=document.createElement('span');if(cls)s.className=cls;s.innerHTML=html+'\n';cons.appendChild(s);cons.scrollTop=cons.scrollHeight}
-  function finish(cap){line('→ 200 OK','ok');line(cap.out);runBtn.disabled=false}
-  function run(){
-    if(timer){clearTimeout(timer);timer=null}
-    var cap=caps[sel.value];approveRow.style.display='none';
-    cons.innerHTML='';
-    runBtn.disabled=true;
-    var steps=[
-      ['<span class="dim">POST</span> /api/capabilities/'+cap.name+'/invocations',300],
-      ['<span class="ok">✓</span> 身份 session=user-102（tenant: workspace-default）',550],
-      ['<span class="ok">✓</span> 权限 '+cap.perm,450],
-      ['<span class="ok">✓</span> 输入 Schema 校验通过',420]
-    ];
-    var i=0;
-    (function next(){
-      if(i<steps.length){line(steps[i][0]);timer=setTimeout(next,steps[i][1]);i++;return}
-      if(cap.risk==='high'){
-        line('<span class="pend">⏸ 风险 high · 自动化路径必须人工确认</span>');
-        approveRow.style.display='flex';runBtn.disabled=false;
-      }else{
-        line('<span class="ok">✓</span> 风险 '+cap.risk+' · 自动批准');
-        timer=setTimeout(function(){finish(cap)},400);
-      }
-    })();
-  }
-  if(runBtn){
-    runBtn.addEventListener('click',run);
-    okBtn.addEventListener('click',function(){approveRow.style.display='none';
-      line('<span class="ok">✓</span> 人工确认 · 以申请人身份重建执行',0);timer=setTimeout(function(){finish(caps[sel.value])},350)});
-    noBtn.addEventListener('click',function(){approveRow.style.display='none';
-      line('<span class="pend">✗ 已拒绝 · 未执行任何业务动作</span>');runBtn.disabled=false});
-    sel.addEventListener('change',function(){cons.innerHTML='<span class="dim">// 选择能力后点击「运行」</span>';approveRow.style.display='none'});
-  }
-
-  // ===== 演示 2：执行方案 =====
-  var plans={
-    direct:[['Capability Gateway','解析 Binding → Direct v1',1],['Go Handler','原生实现 · 单事务',0]],
-    workflow:[['Capability Gateway','解析 Binding → Workflow v3',1],['步骤 1 · 校验输入','复用 example.get',0],['步骤 2 · Agent 判断','从允许工具中选择',0],['Native 节点','保留原业务结果',0]],
-    graph:[['Capability Gateway','解析 Binding → Graph v2',1],['Graph 循环','有界检查 · 最多 3 轮',0],['只读能力','兼容替换 · 固定授权',0]]
-  };
-  var flow=document.getElementById('planFlow');
-  function drawPlan(k){
-    if(!flow)return;
-    flow.innerHTML='';
-    plans[k].forEach(function(n,i){
-      if(i>0){var a=document.createElement('div');a.className='farrow';a.textContent='↓';flow.appendChild(a)}
-      var d=document.createElement('div');d.className='fnode'+(n[2]?' hl':'');
-      d.innerHTML='<span class="t">'+n[0]+'</span><span class="d">'+n[1]+'</span>';
-      flow.appendChild(d);
-    });
-  }
-  var pills=document.getElementById('planPills');
-  if(pills)pills.addEventListener('click',function(e){
-    var b=e.target.closest('button');if(!b)return;
-    pills.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
-    drawPlan(b.dataset.plan);
-  });
-  drawPlan('direct');
-
-  // ===== 演示 3：任务闭环 =====
-  var tl=document.getElementById('tl');
-  if(tl){
-    var items=[].slice.call(tl.children),idx=0;
-    setInterval(function(){
-      items.forEach(function(li,i){
-        li.classList.toggle('done',i<idx);li.classList.toggle('on',i===idx);
-      });
-      idx=(idx+1)%(items.length+1);
-      if(idx===items.length){setTimeout(function(){items.forEach(function(li){li.classList.remove('done','on')})},900)}
-    },1100);
-  }
-})();
 </script>
 </body>
 </html>
